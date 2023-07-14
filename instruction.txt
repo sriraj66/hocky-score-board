@@ -1,0 +1,24 @@
+step 1:
+
+install python 3.7 https://www.python.org/ftp/python/3.7.0/python-3.7.0-amd64.exe
+make sure add python to path is checked
+
+step 2:
+
+open CMD and run the followin following commands :
+
+>>> git clone https://github.com/sriraj66/hocky-score-board.git
+
+setp 3:
+
+* make sure the mobile and pc are in same wifi or hotspot
+* and internet connection is on
+double click on " start.bat "
+
+
+
+******* NOTE ***********
+
+if Any changes i made you can update by
+
+>>> git pull
