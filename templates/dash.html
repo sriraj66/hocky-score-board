@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hockey</title>
+
+    <style>
+        :root {
+            margin: 0;
+            padding: 0;
+            transition: ease-in 1s;
+
+
+            --half : {{match.q_c}};
+            --timer : {{match.t_c}};
+            --team1 : {{match.t_1_c}};
+            --team2 : {{match.t_2_c}};
+            --score : {{match.s_c}};
+            --bg : "#fff";
+        }
+
+        body{
+            background-color: var(--bg);
+        }
+        .panel {
+            position: absolute;
+            bottom: 10%;
+            left: 10%;
+            /* border: 1px solid; */
+            display: flex;
+            justify-content: center;
+        }
+
+        .panel div {
+            width: max-content;
+            border: 1px solid;
+            padding: .5em;
+            font-size: larger;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            transform: skew(-15deg);
+
+        }
+
+        .half {
+            background-color: var(--half);
+            color: white;
+
+        }
+
+        .team1 {
+
+            background-color: var(--team1);
+            color: white;
+        }
+
+        .team2 {
+
+            background-color: var(--team2);
+            color: white;
+        }
+
+        .timer {
+
+            background-color: var(--timer);
+            color: white;
+        }
+
+        .score {
+
+            background-color: var(--score);
+            color: white;
+        }
+    </style>
+
+</head>
+
+<body id="body">
+
+    <div class="bord">
+
+        <div class="panel">
+            <div class="half" id = 'quater'>
+                {{match.quater}}
+            </div>
+            <div class="timer" id="timer">
+                {{match.timer.min}}:{{match.timer.sec}}
+            </div>
+            <div class="team1" id = 't1'>
+                {{match.t_1}}
+            </div>
+            <div class="score" id="score">
+                {{match.t_s_1}} : {{match.t_s_2}}
+            </div>
+            <div class="team2" id="t2">
+                {{match.t_2}}
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <script>
+
+        function update_panel() {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        var response = JSON.parse(xhr.responseText);
+                        
+                        const root = document.documentElement;
+
+                        root.style.setProperty('--team1', response.t_1_c);
+                        root.style.setProperty('--team2', response.t_2_c);
+                        root.style.setProperty('--timer', response.t_c);
+                        root.style.setProperty('--score', response.s_c);
+                        root.style.setProperty('--half', response.q_c);
+                        root.style.setProperty('--bg', response.b_g);
+
+                        document.getElementById("timer").innerText = ` ${response.min} : ${response.sec}`;
+                        document.getElementById("quater").innerText = ` ${response.quater}`;
+                        document.getElementById("t1").innerText = ` ${response.t_1}`;
+                        document.getElementById("t2").innerText = ` ${response.t_2}`;
+                        document.getElementById("score").innerText = ` ${response.t_s_1} : ${response.t_s_2}`;
+
+                    } else {
+                        console.log('Error: ' + xhr.status);
+                    }
+                }
+            };
+            xhr.open('GET', '{% url "update_panel" match.id %}');
+            xhr.send();
+        }
+
+        setInterval(update_panel, 500);
+
+    </script>
+
+</body>
+
+</html>
