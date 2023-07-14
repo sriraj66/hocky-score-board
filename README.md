@@ -28,7 +28,7 @@ The Hockey Scoreboard project aims to create a web application that replicates t
 
 1. Clone the repository:
 
-   git clone https://github.com/your-username/hockey-scoreboard.git 
+   git clone https://github.com/sriraj66/hocky-score-board.git 
 
 2. Double click:
   start.bat
