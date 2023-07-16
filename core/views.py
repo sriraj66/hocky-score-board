@@ -156,6 +156,7 @@ def reset_timer(request,id):
         match.timer.min = match.min
         match.timer.total_sec = sec
         match.timer.is_pause = True
+        match.timer.is_running = True
         match.timer.save()
 
     return JsonResponse({"min":match.timer.min,"sec":match.timer.sec,"is_running":match.timer.is_running,"is_pause":match.timer.is_pause})
