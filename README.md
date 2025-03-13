@@ -34,7 +34,7 @@ The Hockey Scoreboard project aims to create a web application that replicates t
   start.bat
 
 
-#Access the application in your web browser at http://[IP}:8000/.
+# Access the application in your web browser at http://[IP}:8000/.
 
 ## Usage
 Customize the team logos: Replace the placeholder team logo images in the static/images/ directory with your own team logo images.
